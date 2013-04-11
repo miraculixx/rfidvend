@@ -9,19 +9,20 @@ application = app = Flask('wsgi')
 
 from rfidpos import RFIDPos
 from rfid import RFIDTag
-from config import rfidpos_config
+import config
 
 def init_config():
-    global app, rfidpos_config
-    app.rp_config = rfidpos_config
+    global app
+    app.rp_config = config.rfidpos_config
     app.rp_pos = None
-    app.rp_user = rfidpos_config['VENDHQ_USER']
-    app.rp_pass = rfidpos_config['VENDHQ_PASS']
-    app.rp_posurl = rfidpos_config['VENDHQ_URL']
+    app.rp_user = config.rfidpos_config['VENDHQ_USER']
+    app.rp_pass = config.rfidpos_config['VENDHQ_PASS']
+    app.rp_posurl = config.rfidpos_config['VENDHQ_URL']
 
 @app.before_first_request
 def init():
-    app.rp_pos = RFIDPos(app.rp_posurl, app.rfid_user , app.rfid_password)
+    global app
+    app.rp_pos = RFIDPos(app.rp_posurl, app.rp_user , app.rp_pass)
 
 @app.route('/')
 def welcome():
@@ -32,13 +33,18 @@ def card_transaction():
     cardid = request.args.get('cardid', '_none_')
     sale = app.rp_pos.create_sale_from_tag(RFIDTag(bytes=cardid))
     if sale != None:
-        return 'Created sale %s' % sale.get('id')
+        return 'Created sale %s for card %s' % (sale.get('id'), cardid)
     else:
         return 'Card %s not found' % cardid
 
 @app.route('/listcards')
 def list_cards():
     return "Cards: %s " % ','.join(app.rp_pos.cus_by_rfid.keys())
+
+@app.route('/sync')
+def sync_vendhq():
+    app.rp_pos.init_cus_cache()
+    return 'Ok'
 
 @app.route('/env')
 def env():

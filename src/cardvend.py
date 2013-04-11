@@ -84,8 +84,10 @@ def test_post_sales():
 
   webbrowser.open(vend.gen_url_sale(new_sale))
 
-vend = Vend(rfidpos_config['VENDHQ_URL'])
-vend.connect(user=rfidpos_config['VENDHQ_USER'], password=rfidpos_config['VENDHQ_PASS'])
+config = config.rfidpos_config
+
+vend = Vend(config['VENDHQ_URL'])
+vend.connect(user=config['VENDHQ_USER'], password=config['VENDHQ_PASS'])
 
 #test_get_payment_types()
 #test_get_taxes()
