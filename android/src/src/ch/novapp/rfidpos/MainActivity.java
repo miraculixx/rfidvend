@@ -54,7 +54,11 @@ public class MainActivity extends Activity {
 	}
 
 	public void onNewIntent(Intent intent) {
-		handleIntent(intent);
+		// avoid calling handleIntent for the same intent that started the activity
+		// this can happen if onResume is called while we are requesting foreground
+		// intent delivery. Not sure why this happens (it shouldn't) but it does.
+		if(!intent.equals(getIntent()))
+			handleIntent(intent);
 	}
 	
 	private void handleIntent(Intent intent) {
