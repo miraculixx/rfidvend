@@ -4,7 +4,7 @@
         <data xmlns="http://nbpython.dev.java.net/ns/php-project/1">
             <name>AutoJoss</name>
             <sources>
-                <root id="autojoss.dir"/>
+                <root id="src.src.dir"/>
             </sources>
             <tests/>
         </data>

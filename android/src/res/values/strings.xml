@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">RFID POS</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Please scan a tag</string>
+    <string name="button_send">Scan</string>
+
+</resources>

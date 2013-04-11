@@ -1,0 +1,43 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="85dp"
+        android:text="@string/button_send"
+        android:onClick="scanTag" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button1"
+        android:layout_centerHorizontal="true"
+        android:text="@string/hello_world"
+        android:textSize="@dimen/activity_instruction" />
+
+    <TextView
+        android:id="@+id/scannedId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="78dp"
+        android:text="(id will appear)" />
+
+    <TextView
+        android:id="@+id/trxResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/scannedId"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="44dp"
+        android:text="(result will appear)" />
+
+</RelativeLayout>

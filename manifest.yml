@@ -1,0 +1,14 @@
+---
+applications:
+  src:
+    name: novapp
+    framework:
+      name: wsgi
+      info:
+        mem: 64M
+        description: Python WSGI Application
+        exec: 
+    infra: eu-aws
+    url: ${name}.${target-base}
+    mem: 64M
+    instances: 1
